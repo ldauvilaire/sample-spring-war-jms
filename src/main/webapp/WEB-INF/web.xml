@@ -1,0 +1,18 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+	<description>Sample Spring WAR JMS</description>
+
+	<message-destination-ref>
+		<message-destination-ref-name>jms/queue/First</message-destination-ref-name>
+		<message-destination-type>javax.jms.Queue</message-destination-type>
+		<message-destination-usage>ConsumesProduces</message-destination-usage>
+		<message-destination-link>QueueFirst</message-destination-link>
+	</message-destination-ref>
+	<message-destination>
+		<message-destination-name>QueueFirst</message-destination-name>
+	</message-destination>
+
+</web-app>
