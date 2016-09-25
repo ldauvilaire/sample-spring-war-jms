@@ -39,12 +39,12 @@ public class PersonMessageReceiverTest {
 
 		broker = new BrokerService();
 		broker.setPersistent(false);
-		broker.addConnector("tcp://localhost:61616");
+		broker.addConnector("tcp://localhost:61617");
 		broker.start();
 
 		connectionFactory = new ActiveMQConnectionFactory();
 		{
-			connectionFactory.setBrokerURL("tcp://localhost:61616");
+			connectionFactory.setBrokerURL("tcp://localhost:61617");
 			connectionFactory.setTrustedPackages(Arrays.asList("net.ldauvilaire.sample"));
 		}
 	}

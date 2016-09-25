@@ -15,4 +15,14 @@
 		<message-destination-name>QueueFirst</message-destination-name>
 	</message-destination>
 
+	<message-destination-ref>
+		<message-destination-ref-name>jms/queue/Second</message-destination-ref-name>
+		<message-destination-type>javax.jms.Queue</message-destination-type>
+		<message-destination-usage>ConsumesProduces</message-destination-usage>
+		<message-destination-link>QueueSecond</message-destination-link>
+	</message-destination-ref>
+	<message-destination>
+		<message-destination-name>QueueSecond</message-destination-name>
+	</message-destination>
+
 </web-app>

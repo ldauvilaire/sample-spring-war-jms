@@ -3,16 +3,20 @@
 	<Resource name="jms/ConnectionFactory"
 	          auth="Container"
 	          type="org.apache.activemq.ActiveMQConnectionFactory"
-	          description="JMS Connection Factory"
 	          factory="org.apache.activemq.jndi.JNDIReferenceFactory"
 	          brokerURL="tcp://localhost:61616"
-	          brokerName="LocalActiveMQBroker"
-	          useEmbeddedBroker="false"/>
+	          brokerName="ActiveMQBroker" />
  
 	<Resource name="jms/queue/First"
 	          auth="Container"
 	          type="org.apache.activemq.command.ActiveMQQueue"
 	          factory="org.apache.activemq.jndi.JNDIReferenceFactory"
-	          physicalName="QUEUE.FIRST"/>
+	          physicalName="QUEUE.FIRST" />
+
+	<Resource name="jms/queue/Second"
+	          auth="Container"
+	          type="org.apache.activemq.command.ActiveMQQueue"
+	          factory="org.apache.activemq.jndi.JNDIReferenceFactory"
+	          physicalName="QUEUE.SECOND" />
 
 </Context>

@@ -26,16 +26,17 @@ public class ApplicationConfiguration {
 	private static final String PROPERTY_NAME_JMS_CONNECTION_FACTORY_JNDI = "jms.jndi.connection.factory";
 
 	@Bean
-	public ConnectionFactory connectionFactory(Environment env) {
+	public JndiObjectFactoryBean connectionFactory(Environment env) {
+		JndiObjectFactoryBean connectionFactoryBean = new JndiObjectFactoryBean();
+		connectionFactoryBean.setJndiName(env.getProperty(PROPERTY_NAME_JMS_CONNECTION_FACTORY_JNDI));
+		return connectionFactoryBean;
+	}
 
+	@Bean
+	public CachingConnectionFactory cachingConnectionFactory(Environment env, JndiObjectFactoryBean connectionFactoryBean) {
 		CachingConnectionFactory cachingConnectionFactory =  new CachingConnectionFactory();
-		{
-			JndiObjectFactoryBean connectionFactoryBean = new JndiObjectFactoryBean();
-			connectionFactoryBean.setJndiName(env.getProperty(PROPERTY_NAME_JMS_CONNECTION_FACTORY_JNDI));
-			ConnectionFactory connectionFactory = (ConnectionFactory) connectionFactoryBean.getObject();
-			cachingConnectionFactory.setTargetConnectionFactory(connectionFactory);
-		}
-
+		ConnectionFactory connectionFactory = (ConnectionFactory) connectionFactoryBean.getObject();
+		cachingConnectionFactory.setTargetConnectionFactory(connectionFactory);
 		return cachingConnectionFactory;
 	}
 }

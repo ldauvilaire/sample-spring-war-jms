@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+	<property name="APPLI_NAME" value="sample-spring-war-jms" />
+	<property name="LOGS_FOLDER" value="./logs" />
+	<property name="LOGS_TO_COLLECT_FOLDER" value="./logs-archives" />
+
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
-			<Pattern>
-				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
-			</Pattern>
-		</layout>
+		<encoder>
+			<pattern>%d{dd/MM/yyyy HH:mm:ss.SSS} [%-5level] ${APPLI_NAME} -%thread- %class.%method %msg%n</pattern>
+		</encoder>
 	</appender>
 
-	<logger name="net.ldauvilaire.sample" level="debug" additivity="false">
+	<appender name="FILE"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOGS_FOLDER}/${APPLI_NAME}.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOGS_TO_COLLECT_FOLDER}/${APPLI_NAME}.%d{yyyy-MM-dd}.%i.log.zip</FileNamePattern>
+			<maxHistory>16</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{dd/MM/yyyy HH:mm:ss.SSS} [%-5level] ${APPLI_NAME} %user %session -%thread- %class.%method %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<logger name="net.ldauvilaire.sample" level="DEBUG" additivity="false">
+		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</logger>
 
-	<root level="error">
+	<root level="WARN">
+		<appender-ref ref="FILE" />
 		<appender-ref ref="STDOUT" />
 	</root>
 

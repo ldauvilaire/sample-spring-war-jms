@@ -1,13 +1,12 @@
 package net.ldauvilaire.sample.jms.configuration;
 
-import javax.jms.ConnectionFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
+import org.springframework.jms.connection.CachingConnectionFactory;
 
 import net.ldauvilaire.sample.jms.MessagingConstants;
 import net.ldauvilaire.sample.jms.messaging.converter.JsonPersonMessageConverter;
@@ -21,7 +20,7 @@ public class MessagingListenerConfiguration {
 	private static final String PROPERTY_NAME_JMS_CONTAINER_MAX_THREAD = "jms.container.max.thread";
 
 	@Autowired
-	private ConnectionFactory connectionFactory;
+	private CachingConnectionFactory connectionFactory;
 
 	@Autowired
 	private JsonPersonMessageConverter jsonPersonMessageConverter;
