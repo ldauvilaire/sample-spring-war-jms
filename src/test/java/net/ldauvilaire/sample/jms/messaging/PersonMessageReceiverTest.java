@@ -17,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
+import net.ldauvilaire.sample.jms.MessagingConstants;
 import net.ldauvilaire.sample.jms.configuration.ApplicationTestConfiguration;
 import net.ldauvilaire.sample.jms.domain.dto.PersonDTO;
 
@@ -34,17 +35,16 @@ public class PersonMessageReceiverTest {
 
 	@BeforeClass
 	public static void startup() throws Exception {
-
 		LOGGER.info("*** Starting Broker ...");
 
 		broker = new BrokerService();
 		broker.setPersistent(false);
-		broker.addConnector("tcp://localhost:61617");
+		broker.addConnector("vm://localhost?broker.persistent=false&broker.useJmx=false");
 		broker.start();
 
 		connectionFactory = new ActiveMQConnectionFactory();
 		{
-			connectionFactory.setBrokerURL("tcp://localhost:61617");
+			connectionFactory.setBrokerURL("vm://localhost?broker.persistent=false&broker.useJmx=false");
 			connectionFactory.setTrustedPackages(Arrays.asList("net.ldauvilaire.sample"));
 		}
 	}
@@ -63,7 +63,7 @@ public class PersonMessageReceiverTest {
 
 		PersonDTO dto = new PersonDTO("testFirst", "testLast");
 		String message = JSON_MAPPER.writeValueAsString(dto);
-		String destination = "jms/queue/First";
+		String destination = MessagingConstants.JMS_QUEUE_FIRST;
 
 		LOGGER.info("*** Sending JMS Message [{}] to Queue [{}] ...", message, destination);
 		jmsTemplate.convertAndSend(destination, message);
@@ -83,7 +83,7 @@ public class PersonMessageReceiverTest {
 
 		PersonDTO dto = new PersonDTO("testFirst", "testLast");
 		String message = XML_MAPPER.writeValueAsString(dto);
-		String destination = "jms/queue/Second";
+		String destination = MessagingConstants.JMS_QUEUE_SECOND;
 
 		LOGGER.info("*** Sending JMS Message [{}] to Queue [{}] ...", message, destination);
 		jmsTemplate.convertAndSend(destination, message);

@@ -16,16 +16,16 @@
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
-		<spring.version>4.3.3.RELEASE</spring.version>
-		<spring.data.version>1.10.3.RELEASE</spring.data.version>
+		<spring-framework.version>5.3.20</spring-framework.version>
+		<spring.data.version>2.7.0</spring.data.version>
 
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.2</junit.version>
 		<h2.version>1.4.192</h2.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
-		<logback.version>1.1.7</logback.version>
-		<hibernate.version>5.2.2.Final</hibernate.version>
-		<activemq.version>5.14.0</activemq.version>
-		<jackson.version>2.8.3</jackson.version>
+		<logback.version>1.2.9</logback.version>
+		<hibernate.version>5.4.33</hibernate.version>
+		<activemq.version>5.16.4</activemq.version>
+		<jackson.version>2.13.2</jackson.version>
 
 	</properties>
 
@@ -34,13 +34,13 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring-framework.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring-framework.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -53,7 +53,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring-framework.version}</version>
 			<scope>compile</scope>
 		</dependency>
 		<dependency>
@@ -91,7 +91,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring-framework.version}</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -137,7 +137,7 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring-framework.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
