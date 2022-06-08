@@ -20,12 +20,12 @@
 		<spring.data.version>2.7.0</spring.data.version>
 
 		<junit.version>4.13.2</junit.version>
-		<h2.version>1.4.200</h2.version>
+		<h2.version>2.1.212</h2.version>
 		<c3p0.version>0.9.1.2</c3p0.version>
 		<logback.version>1.2.9</logback.version>
-		<hibernate.version>5.4.33</hibernate.version>
+		<hibernate.version>5.6.9.Final</hibernate.version>
 		<activemq.version>5.16.4</activemq.version>
-		<jackson.version>2.13.2.1</jackson.version>
+		<jackson.version>2.13.3</jackson.version>
 
 	</properties>
 
